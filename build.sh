@@ -30,11 +30,14 @@ cd ..
 rm -rf node_modules
 mv node_modules_uncompressed node_modules
 
+mkdir log
+mkdir temp
+
 SVRJSVERSION=$(cat svr.js | grep -E '^[ \t]*(var|const|let) *version *= *(["'"'"'])' | grep -E -o '"([^"\\]|\\.)+"|'"'"'([^'"'"'\\]|\\.)+'"'"'' | head -n 1 | sed -E 's/^.|.$//g' | sed -E 's/\\(.)/\1/g')
 if [ "$SVRJSVERSION" == "" ]; then
   SVRJSVERSION=Unknown
 fi
-SVRJSFILENAME="svr.js.$(echo $SVRJSVERSION| tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z]+/./g').zip"
+SVRJSFILENAME="svr.js.$(echo $SVRJSVERSION| tr '[:upper:]' '[:lower:]' | sed -E 's/[^0-9a-z]+/./g').zip"
 
 gzip svr.js
 mv svr.js.gz svr.compressed
@@ -50,4 +53,4 @@ rm -rf svrjs-temp
 
 popd
 
-echo "You have packed SVR.JS $SVRJSVERSION to \"$SVRJSFILENAME\" file."
+echo "You have packed SVR.JS $SVRJSVERSION into \"$SVRJSFILENAME\" file."
