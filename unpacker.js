@@ -1,0 +1,13 @@
+var zlib = require("zlib");
+var fs = require("fs");
+var tar = require("tar");
+console.log("Decompressing modules...");
+tar.x({file: './modules.compressed', C: './node_modules', sync: true});
+console.log("Deleting SVR.JS stub...");
+fs.unlinkSync("svr.js");
+fs.unlinkSync("modules.compressed");
+console.log("Decompressing SVR.JS...");
+var script = zlib.gunzipSync(fs.readFileSync("svr.compressed"));
+fs.unlinkSync("svr.compressed");
+fs.writeFileSync("svr.js",script);
+console.log("Restart SVR.JS to get server interface.");
