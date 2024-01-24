@@ -46,7 +46,7 @@ cp ../unpacker.js svr.js
 echo $SVRJSFILENAME
 zip -r ../$SVRJSFILENAME *
 zip -r ../$SVRJSFILENAME .* 2>/dev/null
-echo "SVR.JS $SVRJSVERSION" > zip -z ../$SVRJSFILENAME
+echo "SVR.JS $SVRJSVERSION" | zip -z ../$SVRJSFILENAME
 cd ..
 
 rm -rf svrjs-temp
