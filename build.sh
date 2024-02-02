@@ -32,6 +32,7 @@ mv node_modules_uncompressed node_modules
 
 mkdir log
 mkdir temp
+mkdir mods
 
 SVRJSVERSION=$(cat svr.js | grep -E '^[ \t]*(var|const|let) *version *= *(["'"'"'])' | grep -E -o '"([^"\\]|\\.)+"|'"'"'([^'"'"'\\]|\\.)+'"'"'' | head -n 1 | sed -E 's/^.|.$//g' | sed -E 's/\\(.)/\1/g')
 if [ "$SVRJSVERSION" == "" ]; then
