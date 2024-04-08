@@ -13,6 +13,7 @@ pushd $(dirname $0)
 
 cp -a svrjs svrjs-temp
 rm -rf svrjs-temp/.git
+rm -rf svrjs-temp/.github
 find svrjs-temp -name '.gitignore' -exec rm -f {} \;
 
 mkdir svrjs-temp/node_modules_uncompressed
